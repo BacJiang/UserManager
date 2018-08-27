@@ -96,6 +96,7 @@ public class UserManagerController {
 //		return modelAndView;
 //	}
 //	
+//	还需增加过滤器
 	@RequestMapping("/friends")
 	public ModelAndView friendId(@RequestParam("id")int id) {
 		System.out.println("====================="+id);
