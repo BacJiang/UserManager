@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hikvision.usermanager.dao.UserDao">
+	<resultMap id="BaseResultMap"
+		type="com.hikvision.usermanager.bean.UserInfo">
+		<result column="user_id" property="id" />
+		<result column="user_name" property="userName" />
+		<result column="sex" property="sex" />
+		<result column="age" property="age" />
+		<result column="email" property="email" />
+		<result column="address" property="address" />
+	</resultMap>
+
+	<sql id="all_column">
+		user_id,user_name,sex,age,email,address
+	</sql>
+	<sql id="table_name">user_info</sql>
+
+	<insert id="insert"
+		parameterType="com.hikvision.usermanager.bean.UserInfo">
+		insert into
+		<include refid="table_name" />
+		values(#{id},#{userName},#{sex},#{age},#{email},#{address})
+	</insert>
+	<update id="alterTable">
+		alter table
+		<include refid="table_name" />
+		AUTO_INCREMENT=1
+	</update>
+
+
+	<delete id="deleteById">
+		delete from
+		<include refid="table_name" />
+		where user_id = #{id}
+	</delete>
+
+	<update id="update">
+		update
+		<include refid="table_name" />
+		set user_name = #{userName},sex = #{sex},age = #{age},email =
+		#{email},address = #{address}
+		where user_id = #{id}
+	</update>
+
+	<select id="findAllUser" resultMap="BaseResultMap">
+		select
+		<include refid="all_column" />
+		from
+		<include refid="table_name" />
+	</select>
+
+	<select id="queryByName" resultMap="BaseResultMap">
+		select
+		<include refid="all_column" />
+		from
+		<include refid="table_name" />
+		where user_name = #{userName}
+	</select>
+
+	<select id="queryById" resultMap="BaseResultMap">
+		select
+		<include refid="all_column" />
+		from
+		<include refid="table_name" />
+		where user_id = #{id}
+	</select>
+
+
+</mapper>

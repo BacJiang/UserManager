@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.hikvision.usermanager.dao.FriendsRelationDao">
+	<resultMap id="BaseResultMap"
+		type="com.hikvision.usermanager.bean.FriendsRelationInfo">
+		<result column="user_id" property="userId" />
+		<result column="friend_id" property="friendId" />
+	</resultMap>
+	<resultMap type="java.lang.Integer" id="friendsId">
+		<result column="friend_id" property="friendId" />
+	</resultMap>
+
+	<sql id="table_name">friends_relation</sql>
+
+
+	<select id="queryById" resultMap="friendsId">
+		select friend_id
+		from
+		<include refid="table_name" />
+		where user_id = #{id}
+	</select>
+
+
+</mapper>
